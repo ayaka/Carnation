@@ -6,12 +6,17 @@ import landingImage from "../images/landing.png";
 import Button from "../components/ui/Button";
 import Modal from "../components/Modal";
 import Backdrop from "../components/Backdrop";
+import SignInForm from "../components/form/SignInForm";
 
 function LandingPage() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function formHandler() {
     setModalIsOpen(true);
+  }
+
+  function closeModalHandler() {
+    setModalIsOpen(false);
   }
 
   return (
@@ -25,15 +30,15 @@ function LandingPage() {
           </p>
         </div>
         <div className={classes.btnPosition}>
-          <Button text={"Join for free"} action={formHandler} />
+          <Button text={"Join for free"} onClick={formHandler} />
         </div>
       </section>
       <section className={classes.imgContainer}>
         <div className={classes.background}></div>
         <img src={landingImage} alt="mom and baby" className={classes.img} />
       </section>
-      {modalIsOpen && <Modal />}
-      {modalIsOpen && <Backdrop />}
+      {modalIsOpen && <Modal formType={<SignInForm />} />}
+      {modalIsOpen && <Backdrop onClick={closeModalHandler} />}
     </main>
   );
 }

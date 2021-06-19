@@ -6,6 +6,7 @@
   background: #e36968;
   border-radius: 8px;
 }
+
 .btnText {
   position: static;
   width: 85px;
@@ -22,16 +23,13 @@
 }
 
 .modal {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 25px;
-  background-color: white;
-  /* padding: 1rem; */
-  text-align: center;
-  width: 30rem;
+  background: #ffffff;
   z-index: 10;
   position: fixed;
-  top: 20vh;
-  left: calc(50% - 15rem);
+  width: 643px;
+  height: 729px;
+  top: 2vh;
+  left: calc(50% - 321px);
 }
 
 .backdrop {
