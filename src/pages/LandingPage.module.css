@@ -1,0 +1,46 @@
+body {
+  background-color: #eaf3f3;
+}
+.text {
+  position: absolute;
+  width: 550px;
+  height: 250px;
+  left: 105px;
+  top: 273px;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  /* or 125% */
+
+  /* Text/Title Text */
+
+  color: #333333;
+}
+
+.btnPosition {
+  position: absolute;
+  width: 181px;
+  height: 56px;
+  left: 105px;
+  top: 565px;
+}
+
+.background {
+  position: absolute;
+  width: 504px;
+  height: 640px;
+  left: 830px;
+  top: 164px;
+  background: #e36968;
+  border-radius: 24px;
+}
+.img {
+  position: absolute;
+  width: 446.22px;
+  height: 480px;
+  left: 820px;
+  top: 244px;
+}
