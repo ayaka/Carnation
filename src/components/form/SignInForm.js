@@ -1,25 +1,43 @@
 import { useRef } from "react";
+import { useState } from "react";
 
 import Button from "../ui/Button";
 
 import classes from "./Form.module.css";
 
-function SignInForm() {
+function SignInForm(props) {
   const nameInputRef = useRef();
   const emailInputRef = useRef();
   const password1InputRef = useRef();
   const password2InputRef = useRef();
 
+  const [passwordNoMatch, setPasswordNoMatch] = useState(false);
+
   function submitHandler(event) {
     event.preventDefault();
 
     if (password1InputRef.current.value !== password2InputRef.current.value) {
+      setPasswordNoMatch(true);
     } else {
       const signUpData = {
         name: nameInputRef.current.value,
         email: emailInputRef.current.value,
         password: password1InputRef.current.value,
+        communities: [],
       };
+
+      fetch(
+        "https://carnation-e2d5a-default-rtdb.firebaseio.com/accounts.json",
+        {
+          method: "POST",
+          body: JSON.stringify(signUpData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).then(() => {
+        // close modal and move to Feed
+      });
     }
   }
 
@@ -29,23 +47,38 @@ function SignInForm() {
       <form className={classes.form}>
         <div className={classes.control}>
           <label htmlFor="name">Name</label>
-          <input type="test" required id="name" ref={nameInputRef} />
+          <input type="text" required id="name" ref={nameInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="email">Email</label>
-          <input type="test" required id="email" ref={emailInputRef} />
+          <input type="email" required id="email" ref={emailInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="password1">Password</label>
-          <input type="test" required id="password1" ref={password1InputRef} />
+          <input
+            type="password"
+            required
+            id="password1"
+            ref={password1InputRef}
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="password2">Confirm Password</label>
-          <input type="test" required id="password2" ref={password2InputRef} />
+          <input
+            type="password"
+            required
+            id="password2"
+            ref={password2InputRef}
+          />
         </div>
-        <div className={classes.error}>The email or password is incorrect.</div>
+
+        {passwordNoMatch && (
+          <div className={classes.error}>
+            The email or password is incorrect.
+          </div>
+        )}
         <div className={classes.btnPosition}>
-          <Button text={"Join Now"} onClick={() => {}} />
+          <Button text={"Join Now"} onClick={submitHandler} />
         </div>
       </form>
     </div>
